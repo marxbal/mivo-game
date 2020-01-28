@@ -1,12 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-image: url("../src/assets/images/map-bg.gif");
+}
+
 .box {
-    width: 58px;
-    height: 58px;
+    width: 47px;
+    height: 47px;
+    margin-bottom: 10px;
+    margin-right: 10px;
     border: 1px solid;
     border-radius: 5px;
-    float: right;
+    float: left;
     background-image: url("../src/assets/images/logo.png");
-    background-size: 58px 58px;
+    background-repeat: no-repeat;
+    background-size: 47px 47px;
 }
 
 .box.active {
@@ -37,6 +44,10 @@
     background: #cd7f32;
 }
 
-.grp-btn {
-    width: 1455px;
+.clear {
+    clear: left;
 }
+
+/* .grp-btn {
+    width: 1455px;
+} */

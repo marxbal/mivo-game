@@ -41,7 +41,8 @@ export class BoardComponent implements OnInit {
       for (var i = 1; i <= 250; i++) {
         this.empList.push({
           "index": i,
-          "active": ""
+          "active": "",
+          "nextline": i % 25 == 1 ? "clear" : "",
         });
       }
       this.getPrice();
@@ -85,7 +86,6 @@ export class BoardComponent implements OnInit {
   getPrice() {
     for (var i = 1; i <= 2; i++) {
       var n = this.getRandomNumber();
-      console.log(n);
       this.empList.forEach((obj) => {
         if (n == obj["index"]) {
           obj["price"] = "gold";

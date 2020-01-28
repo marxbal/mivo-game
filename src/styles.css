@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+.box {
+    width: 58px;
+    height: 58px;
+    border: 3px solid;
+    border-radius: 5px;
+    float: right;
+    background-image: url("../src/assets/images/logo.png");
+    background-size: 58px 58px;
+}
+
+.box.active {
+    background: indianred;
+}
+
+.box.gold {
+    border: 3px solid gold;
+}
+
+.box.silver {
+    border: 3px solid silver;
+}
+
+.box.bronze {
+    border: 3px solid #cd7f32;
+}
+
+.box.active.gold, .modal-header.gold {
+    background: gold;
+}
+
+.box.active.silver, .modal-header.silver {
+    background: silver;
+}
+
+.box.active.bronze, .modal-header.bronze {
+    background: #cd7f32;
+}
+
+.grp-btn {
+    width: 1455px;
+}

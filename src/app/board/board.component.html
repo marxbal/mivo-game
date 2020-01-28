@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1>Pick a Box | I choose you!
+        <small class="btn btn-primary" (click)="reset()">Reset</small></h1>
+    </div>
+
+    <div class="col-lg-12">
+      <div class="grp-btn">
+        <button *ngFor="let obj of empList" id="{{obj.index}}" class="box {{obj.price}} {{obj.active}}"
+          (click)="activate($event)"></button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header {{gold ? 'gold' : ''}} {{silver ? 'silver' : ''}} {{bronze ? 'bronze' : ''}}">
+    <h4 *ngIf="!win" class="modal-title" id="modal-basic-title">Thank you for playing!</h4>
+    <h4 *ngIf="win" class="modal-title" id="modal-basic-title">Congratulations!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div *ngIf="win && gold">
+          <img src="https://media.giphy.com/media/g9582DNuQppxC/giphy.gif" />
+          <h4>You won a WINE!</h4>
+        </div>
+
+        <div *ngIf="win && silver">
+          <img src="https://media.giphy.com/media/DKnMqdm9i980E/giphy.gif" />
+          <h4>You won a MAGNET!</h4>
+        </div>
+
+        <div *ngIf="win && bronze">
+          <img src="https://media.giphy.com/media/3oEjI10muIW5IX4BWg/giphy.gif" />
+          <h4>You won a PEN!</h4>
+        </div>
+
+        <img src="https://media.giphy.com/media/13qctMBrrgbwJi/giphy.gif" *ngIf="!win" />
+      </div>
+    </form>
+  </div>
+</ng-template>

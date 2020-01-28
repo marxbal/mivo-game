@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-    background-image: url("../src/assets/images/map-bg.gif");
+    background-image: url("/mivo-game/assets/images/map-bg.gif");
 }
 
 .box {
@@ -11,7 +11,7 @@ body {
     border: 1px solid;
     border-radius: 5px;
     float: left;
-    background-image: url("../src/assets/images/logo.png");
+    background-image: url("/mivo-game/assets/images/logo.png");
     background-repeat: no-repeat;
     background-size: 47px 47px;
 }

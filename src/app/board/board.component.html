@@ -30,21 +30,21 @@
     <form>
       <div class="form-group">
         <div *ngIf="win && gold">
-          <img src="../../assets/images/gold.gif" />
+          <img src="./assets/images/gold.gif" />
           <h4>You won a WINE!</h4>
         </div>
 
         <div *ngIf="win && silver">
-          <img src="../../assets/images/silver.gif" />
+          <img src="./assets/images/silver.gif" />
           <h4>You won a MAGNET!</h4>
         </div>
 
         <div *ngIf="win && bronze">
-          <img src="../../assets/images/bronze.gif" />
+          <img src="./assets/images/bronze.gif" />
           <h4>You won a PEN!</h4>
         </div>
 
-        <img src="../../assets/images/thankyou.gif" *ngIf="!win" />
+        <img src="./assets/images/thankyou.gif" *ngIf="!win" />
       </div>
     </form>
   </div>

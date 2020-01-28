@@ -27,21 +27,21 @@
     <form>
       <div class="form-group">
         <div *ngIf="win && gold">
-          <img src="https://media.giphy.com/media/g9582DNuQppxC/giphy.gif" />
+          <img src="../../assets/images/gold.gif" />
           <h4>You won a WINE!</h4>
         </div>
 
         <div *ngIf="win && silver">
-          <img src="https://media.giphy.com/media/DKnMqdm9i980E/giphy.gif" />
+          <img src="../../assets/images/silver.gif" />
           <h4>You won a MAGNET!</h4>
         </div>
 
         <div *ngIf="win && bronze">
-          <img src="https://media.giphy.com/media/3oEjI10muIW5IX4BWg/giphy.gif" />
+          <img src="../../assets/images/bronze.gif" />
           <h4>You won a PEN!</h4>
         </div>
 
-        <img src="https://media.giphy.com/media/13qctMBrrgbwJi/giphy.gif" *ngIf="!win" />
+        <img src="../../assets/images/thankyou.gif" *ngIf="!win" />
       </div>
     </form>
   </div>

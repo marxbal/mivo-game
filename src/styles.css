@@ -20,7 +20,7 @@ body {
   background: indianred;
 }
 
-.box.gold {
+/* .box.gold {
   border: 1px solid gold;
 }
 
@@ -30,7 +30,7 @@ body {
 
 .box.bronze {
   border: 1px solid #cd7f32;
-}
+} */
 
 .box.active.gold,
 .modal-header.gold {

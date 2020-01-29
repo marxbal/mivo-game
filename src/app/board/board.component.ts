@@ -2,9 +2,7 @@ import {
   Component,
   OnInit,
   TemplateRef,
-  ViewChild
-} from '@angular/core';
-import {
+  ViewChild,
   Renderer
 } from '@angular/core';
 import {
@@ -93,7 +91,7 @@ export class BoardComponent implements OnInit {
       });
     }
 
-    for (var i = 1; i <= 48; i++) {
+    for (var i = 1; i <= 75; i++) {
       var n = this.getRandomNumber();
       this.empList.forEach((obj) => {
         if (n == obj["index"]) {
@@ -102,7 +100,7 @@ export class BoardComponent implements OnInit {
       });
     }
 
-    for (var i = 1; i <= 100; i++) {
+    for (var i = 1; i <= 115; i++) {
       var n = this.getRandomNumber();
       this.empList.forEach((obj) => {
         if (n == obj["index"]) {
@@ -112,12 +110,8 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  getRandomInt() {
-    return Math.floor(Math.random() * Math.floor(250));
-  }
-
   getRandomNumber() {
-    var num = this.getRandomInt();
+    var num = Math.floor(Math.random() * Math.floor(250));
     if (!this.numberExist(num)) {
       this.list.push(num);
       return num;
@@ -133,23 +127,9 @@ export class BoardComponent implements OnInit {
     return false;
   }
 
-  open(content) {
+  open(content: any) {
     this.modalService.open(content, {
       ariaLabelledBy: 'modal-basic-title'
-    }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
   }
 }

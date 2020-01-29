@@ -1,53 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-    background-image: url("/mivo-game/assets/images/map-bg.gif");
+  background-image: url("/mivo-game/assets/images/map-bg.gif");
 }
 
 .box {
-    width: 47px;
-    height: 47px;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    border: 1px solid;
-    border-radius: 5px;
-    float: left;
-    background-image: url("/mivo-game/assets/images/logo.png");
-    background-repeat: no-repeat;
-    background-size: 47px 47px;
+  width: 45px;
+  height: 45px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  border: 1px solid;
+  border-radius: 5px;
+  float: left;
+  background-image: url("/mivo-game/assets/images/logo.png");
+  background-repeat: no-repeat;
+  background-size: 45px 45px;
 }
 
 .box.active {
-    background: indianred;
+  background: indianred;
 }
 
 .box.gold {
-    border: 1px solid gold;
+  border: 1px solid gold;
 }
 
 .box.silver {
-    border: 1px solid silver;
+  border: 1px solid silver;
 }
 
 .box.bronze {
-    border: 1px solid #cd7f32;
+  border: 1px solid #cd7f32;
 }
 
-.box.active.gold, .modal-header.gold {
-    background: gold;
+.box.active.gold,
+.modal-header.gold {
+  background: gold;
 }
 
-.box.active.silver, .modal-header.silver {
-    background: silver;
+.box.active.silver,
+.modal-header.silver {
+  background: silver;
 }
 
-.box.active.bronze, .modal-header.bronze {
-    background: #cd7f32;
+.box.active.bronze,
+.modal-header.bronze {
+  background: #cd7f32;
 }
 
 .clear {
-    clear: left;
+  clear: left;
 }
 
-/* .grp-btn {
-    width: 1455px;
-} */
+h1 {
+  text-align: center;
+}
+
+.grp-btn {
+  width: 1250px;
+  position: relative;
+  margin: 0 auto;
+}

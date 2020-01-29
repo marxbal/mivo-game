@@ -116,7 +116,7 @@ export class BoardComponent implements OnInit {
       this.list.push(num);
       return num;
     } else {
-      this.getRandomNumber();
+      return this.getRandomNumber();
     }
   }
 

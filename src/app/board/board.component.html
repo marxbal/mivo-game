@@ -1,20 +1,152 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-12">
-      <h1>Pick a Box | I choose you!
-        <small class="btn btn-primary" (click)="reset()">Reset</small></h1>
+      <h1>Pick a Box | I choose you!</h1>
     </div>
-
-    <div class="col-lg-12">
-      <div class="grp-btn">
-        <button 
-          *ngFor="let obj of empList"
-          id="{{obj.index}}"
-          class="box {{obj.price}} {{obj.active}} {{obj.nextline}}"
-          (click)="activate($event)"></button>
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-body">
+          <div class="outer-div">
+            <div class="inner-div">
+              <button *ngFor="let obj of empList" id="{{obj.index}}"
+                class="box {{obj.price}} {{obj.active}} {{obj.nextline}}" (click)="activate($event)"></button>
+              <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
       </div>
     </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="settingsForm">
 
+            <div class="form-group" [ngClass]="{'input-error': settingsForm.controls['boxSizeList'].invalid 
+              && (settingsForm.controls['boxSizeList'].dirty 
+              || settingsForm.controls['boxSizeList'].touched)}">
+              <label>Box size</label>
+              <select class="form-control" formControlName="boxSizeList" type="text" name="boxSizeList">
+                <option selected></option>
+                <option *ngFor="let box of boxList" [ngValue]="box">{{box}}</option>
+              </select>
+              <p class="form-error" *ngIf="settingsForm.controls['boxSizeList'].errors?.required">
+                * box size is required
+              </p>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group" [ngClass]="{'input-error': settingsForm.controls['goldPrice'].invalid 
+                && (settingsForm.controls['goldPrice'].dirty 
+                || settingsForm.controls['goldPrice'].touched)}">
+                  <label>Gold Price</label>
+                  <input class="form-control"
+                    formControlName="goldPrice"
+                    type="text"
+                    name="goldPrice">
+                  <p class="form-error" *ngIf="settingsForm.controls['goldPrice'].errors?.required">
+                    * gold price is required
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group" [ngClass]="{'input-error': settingsForm.controls['goldCount'].invalid 
+                && (settingsForm.controls['goldCount'].dirty 
+                || settingsForm.controls['goldCount'].touched)}">
+                  <label>Gold Count</label>
+                  <input class="form-control"
+                    formControlName="goldCount"
+                    type="number"
+                    name="goldCount">
+                  <p class="form-error" *ngIf="settingsForm.controls['goldCount'].errors?.required">
+                    * gold count is required
+                  </p>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group" [ngClass]="{'input-error': settingsForm.controls['silverPrice'].invalid 
+                && (settingsForm.controls['silverPrice'].dirty 
+                || settingsForm.controls['silverPrice'].touched)}">
+                  <label>Silver Price</label>
+                  <input class="form-control"
+                    formControlName="silverPrice"
+                    type="text"
+                    name="silverPrice">
+                  <p class="form-error" *ngIf="settingsForm.controls['silverPrice'].errors?.required">
+                    * silver price is required
+                  </p>
+                </div>
+              </div>
+  
+              <div class="col-md-6">
+                <div class="form-group" [ngClass]="{'input-error': settingsForm.controls['silverCount'].invalid 
+                && (settingsForm.controls['silverCount'].dirty 
+                || settingsForm.controls['silverCount'].touched)}">
+                  <label>Silver Count</label>
+                  <input class="form-control"
+                    formControlName="silverCount"
+                    type="number"
+                    name="silverCount">
+                  <p class="form-error" *ngIf="settingsForm.controls['silverCount'].errors?.required">
+                    * silver count is required
+                  </p>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group" [ngClass]="{'input-error': settingsForm.controls['bronzePrice'].invalid 
+                && (settingsForm.controls['bronzePrice'].dirty 
+                || settingsForm.controls['bronzePrice'].touched)}">
+                  <label>Bronze Price</label>
+                  <input class="form-control"
+                    formControlName="bronzePrice"
+                    type="text"
+                    name="bronzePrice">
+                  <p class="form-error" *ngIf="settingsForm.controls['bronzePrice'].errors?.required">
+                    * bronze price is required
+                  </p>
+                </div>
+              </div>
+  
+              <div class="col-md-6">
+                <div class="form-group" [ngClass]="{'input-error': settingsForm.controls['bronzeCount'].invalid 
+                && (settingsForm.controls['bronzeCount'].dirty 
+                || settingsForm.controls['bronzeCount'].touched)}">
+                  <label>Bronze Count</label>
+                  <input class="form-control"
+                    formControlName="bronzeCount"
+                    type="number"
+                    name="bronzeCount">
+                  <p class="form-error" *ngIf="settingsForm.controls['bronzeCount'].errors?.required">
+                    * bronze count is required
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <button
+                    [disabled]="settingsForm.pristine || settingsForm.invalid"
+                    class="btn btn-primary"
+                    (click)="generate()">Generate</button>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group float-right">
+                  <button class="btn btn-primary" (click)="newGame()">New Game</button>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
   </div>
 </div>
 
@@ -31,17 +163,17 @@
       <div class="form-group">
         <div *ngIf="win && gold">
           <img src="./assets/images/gold.gif" />
-          <h4>You won a WINE!</h4>
+          <h4>You won {{settingsForm.value.goldPrice}}!</h4>
         </div>
 
         <div *ngIf="win && silver">
           <img src="./assets/images/silver.gif" />
-          <h4>You won a REF MAGNET!</h4>
+          <h4>You won {{settingsForm.value.silverPrice}}!</h4>
         </div>
 
         <div *ngIf="win && bronze">
           <img src="./assets/images/bronze.gif" />
-          <h4>You won a PEN!</h4>
+          <h4>You won {{settingsForm.value.bronzePrice}}!</h4>
         </div>
 
         <img src="./assets/images/thankyou.gif" *ngIf="!win" />

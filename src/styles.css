@@ -20,18 +20,6 @@ body {
   background: indianred;
 }
 
-/* .box.gold {
-  border: 1px solid gold;
-}
-
-.box.silver {
-  border: 1px solid silver;
-}
-
-.box.bronze {
-  border: 1px solid #cd7f32;
-} */
-
 .box.active.gold,
 .modal-header.gold {
   background: gold;
@@ -56,7 +44,50 @@ h1 {
 }
 
 .grp-btn {
-  width: 1250px;
+  display: inline-block;
   position: relative;
   margin: 0 auto;
+}
+
+.outer-div {
+  position: relative;
+  float: right;
+  right: 50%;
+}
+
+.inner-div {
+  position: relative;
+  float: right;
+  right: -50%;
+  position: relative;
+  margin: 0 auto;
+}
+
+form .form-error {
+  margin-top: 5px;
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #c31f09;
+  display: none;
+}
+
+form .form-group.input-error .form-error {
+  display: block !important;
+}
+
+form .form-group.input-error input,
+form .form-group.input-error select {
+  border: 2px solid #c31f09 !important;
+}
+
+.box.gold {
+  border: 1px solid gold;
+}
+
+.box.silver {
+  border: 1px solid silver;
+}
+
+.box.bronze {
+  border: 1px solid #cd7f32;
 }

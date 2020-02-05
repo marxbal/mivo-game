@@ -6,8 +6,12 @@ import {
   Renderer
 } from '@angular/core';
 import {
-  NgbModal,
-  ModalDismissReasons
+  FormGroup,
+  FormBuilder,
+  Validators
+} from '@angular/forms';
+import {
+  NgbModal
 } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -23,24 +27,66 @@ export class BoardComponent implements OnInit {
   private content: TemplateRef < any > ;
 
   constructor(private render: Renderer,
-    private modalService: NgbModal) {}
+    private modalService: NgbModal,
+    private fb: FormBuilder) {
+      // this.createForm();
+    }
+
+  settingsForm: FormGroup;
 
   empList: Array < Object > = [];
   list: Array < number > = [];
+  priceList: Array < Object > = [];
+  
   closeResult: string;
   gold: boolean = false;
   silver: boolean = false;
   bronze: boolean = false;
   win: boolean = false;
 
+  boxList: Array < number > = [5, 6, 7, 8, 9, 10];
+
+  count: number = 100;
+  size: number = 10;
+  totalSize: number = this.size * this.size;
+
   ngOnInit() {
+    this.createForm();
+    this.createGame();
+  }
+
+  settings = {
+    goldPrice : "Gold",
+    silverPrice : "Silver",
+    bronzePrice : "Bronze",
+    goldCount : 5,
+    silverCount : 10,
+    bronzeCount : 30,
+  }
+
+  createForm() {
+    this.settingsForm = this.fb.group({
+      boxSizeList: [this.size, Validators.required],
+      goldPrice: [this.settings.goldPrice, Validators.required],
+      goldCount: [this.settings.goldCount, Validators.required],
+      silverPrice: [this.settings.silverPrice, Validators.required],
+      silverCount: [this.settings.silverCount, Validators.required],
+      bronzePrice: [this.settings.bronzePrice, Validators.required],
+      bronzeCount: [this.settings.bronzeCount, Validators.required],
+    });
+  }
+
+  createGame() {
+    this.empList = [];
+    this.list = [];
     var gameList = localStorage.getItem("gameList");
+    this.totalSize = this.size * this.size;
     if (gameList == null) {
-      for (var i = 1; i <= 250; i++) {
+      for (var i = 1; i <= this.totalSize; i++) {
         this.empList.push({
           "index": i,
           "active": "",
-          "nextline": i % 25 == 1 ? "clear" : "",
+          "nextline": i % this.size == 1 ? "clear" : "",
         });
       }
       this.getPrice();
@@ -72,17 +118,30 @@ export class BoardComponent implements OnInit {
       }
       this.open(this.content);
     }
-    
+
     localStorage.setItem("gameList", JSON.stringify(this.empList));
   }
 
-  reset() {
+  newGame() {
     localStorage.removeItem("gameList");
     window.location.reload();
   }
 
+  generate(){
+    var size = this.settingsForm.value.boxSizeList;
+    var total = size * size;
+    if (this.validateCount(size)) {
+      this.size = size;
+      localStorage.removeItem("gameList");
+      this.createGame();
+    } else {
+      alert("Sorry, price count ("+this.count+") is bigger than the total count ("+total+")" )
+    }
+  }
+
   getPrice() {
-    for (var i = 1; i <= 2; i++) {
+    var goldCount = this.settingsForm.value.goldCount;
+    for (var i = 1; i <= goldCount; i++) {
       var n = this.getRandomNumber();
       this.empList.forEach((obj) => {
         if (n == obj["index"]) {
@@ -91,7 +150,8 @@ export class BoardComponent implements OnInit {
       });
     }
 
-    for (var i = 1; i <= 75; i++) {
+    var silverCount = this.settingsForm.value.silverCount;
+    for (var i = 1; i <= silverCount; i++) {
       var n = this.getRandomNumber();
       this.empList.forEach((obj) => {
         if (n == obj["index"]) {
@@ -100,7 +160,8 @@ export class BoardComponent implements OnInit {
       });
     }
 
-    for (var i = 1; i <= 115; i++) {
+    var bronzeCount = this.settingsForm.value.bronzeCount;
+    for (var i = 1; i <= bronzeCount; i++) {
       var n = this.getRandomNumber();
       this.empList.forEach((obj) => {
         if (n == obj["index"]) {
@@ -111,7 +172,9 @@ export class BoardComponent implements OnInit {
   }
 
   getRandomNumber() {
-    var num = Math.floor(Math.random() * Math.floor(250));
+    var random = Math.floor(Math.random() * Math.floor(this.totalSize));
+    var num = random == 0 ? this.totalSize : random;
+
     if (!this.numberExist(num)) {
       this.list.push(num);
       return num;
@@ -125,6 +188,14 @@ export class BoardComponent implements OnInit {
       return this.list.indexOf(num) != -1;
     }
     return false;
+  }
+
+  validateCount(size : number) {
+    var totalSize = size * size;
+    this.count = this.settingsForm.value.goldCount + 
+    this.settingsForm.value.silverCount +
+    this.settingsForm.value.bronzeCount;
+    return this.count <= totalSize;
   }
 
   open(content: any) {

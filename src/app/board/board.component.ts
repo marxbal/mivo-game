@@ -29,7 +29,7 @@ export class BoardComponent implements OnInit {
   constructor(private render: Renderer,
     private modalService: NgbModal,
     private fb: FormBuilder) {
-      // this.createForm();
+      this.createForm();
     }
 
   settingsForm: FormGroup;
@@ -44,14 +44,13 @@ export class BoardComponent implements OnInit {
   bronze: boolean = false;
   win: boolean = false;
 
-  boxList: Array < number > = [5, 6, 7, 8, 9, 10];
+  boxList: Array < number > = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   count: number = 100;
   size: number = 10;
   totalSize: number = this.size * this.size;
 
   ngOnInit() {
-    this.createForm();
     this.createGame();
   }
 
